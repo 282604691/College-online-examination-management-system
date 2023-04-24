@@ -7,7 +7,7 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>在线考试系统首页</title>
+    <title>system homepage</title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
@@ -17,23 +17,16 @@
 <body>
 <div class="container">
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-        <h5 class="my-0 mr-md-auto font-weight-normal">在线考试系统</h5>
-<!--        <nav class="my-2 my-md-0 mr-md-3">-->
-<!--            <a class="btn btn btn-warning" data-toggle="tooltip" data-placement="top" title="请登录"></a>-->
-<!--            <a class="btn btn btn-info" data-toggle="tooltip" data-placement="top" title="请登录"></a>-->
-<!--            <a class="btn btn btn-info" data-toggle="tooltip" data-placement="top" title="请登录"></a>  -->
-<!--        </nav>-->
-<!--        <div class="col-md-1">-->
-<!--            <a class="btn btn-outline-warning" href="#" data-toggle="tooltip" data-placement="top" title="请登录">hello</a>-->
-<!--        </div>-->
+        <h5 class="my-0 mr-md-auto font-weight-normal">online exam system</h5>
+
     </div>
 
     <div class="jumbotron">
-        <h1>考试系统</h1>
-        <p class="lead"><b>欢迎使用源码空间站在线考试测试平台，期待您学的开心！</b></p>
-        <p class="lead"><b>Welcome to the online exam testing platform of Changchun Normal University, and look forward to your happy learning!</b></p>
-        <p><a class="btn btn-lg btn-info" href="#" role="button" th:href="@{prexam/toAddStudent}">现在注册</a></p>
-        <p><a class="btn btn-lg btn-success" href="#" role="button" th:href="@{foreLogin}">现在登录</a></p>
+        <h1>Exam system</h1>
+        <p class="lead"><b>Welcome and have good tests！</b></p>
+        <p class="lead"><b>Welcome to the online exam testing platform , and look forward to your happy learning!</b></p>
+        <p><a class="btn btn-lg btn-info" href="#" role="button" th:href="@{prexam/toAddStudent}">register</a></p>
+        <p><a class="btn btn-lg btn-success" href="#" role="button" th:href="@{foreLogin}">login now</a></p>
     </div>
 
     <div class="row">
@@ -48,7 +41,7 @@
                         </div>
                         <div class="">
                             <div class="numbers">
-                                <p class="card-category">学生和教师</p>
+                                <p class="card-category">users</p>
                                 <h4 class="text-center" th:text="${alllogers}"></h4>
                             </div>
                         </div>
@@ -67,7 +60,7 @@
                         </div>
                         <div class="col-7 d-flex align-items-center">
                             <div class="numbers">
-                                <p class="card-category">总计试题</p>
+                                <p class="card-category">questions</p>
                                 <h4 class="text-center" th:text="${allQues}"></h4>
                             </div>
                         </div>
@@ -86,7 +79,7 @@
                         </div>
                         <div class="col-7 d-flex align-items-center">
                             <div class="numbers">
-                                <p class="text-left">共有试卷</p>
+                                <p class="text-left">paper</p>
                                 <h4 class="text-center" th:text="${allPaps}"></h4>
                             </div>
                         </div>

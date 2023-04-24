@@ -2,7 +2,7 @@
 <html lang="en"	xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>在线考试系统后台试题卷管理页面</title>
+    <title>Paper management page</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
@@ -21,9 +21,9 @@
     <div class="main-panel">
         <div class="content">
             <div class="container-fluid">
-                <h4 class="page-title">试卷管理页面</h4>
+                <h4 class="page-title">paper management</h4>
                 <div class="row">
-                    <div class="col-md-2"><h2><a class="btn btn-success" href="#" th:href="@{/paper/toAddPaper}">试卷添加</a></h2> </div>
+                    <div class="col-md-2"><h2><a class="btn btn-success" href="#" th:href="@{/paper/toAddPaper}">add paper</a></h2> </div>
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
@@ -31,11 +31,11 @@
                                     <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">试卷名字</th>
-                                        <th scope="col">单选题分数</th>
-                                        <th scope="col">多选题分数</th>
-                                        <th scope="col">判断题分数</th>
-                                        <th scope="col">操作</th>
+                                        <th scope="col">name</th>
+                                        <th scope="col">single score</th>
+                                        <th scope="col">multiple score</th>
+                                        <th scope="col">T or F</th>
+                                        <th scope="col">change</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -46,9 +46,9 @@
                                         <td th:text="${pap.getScoreChe()}"></td>
                                         <td th:text="${pap.getScoreJug()}"></td>
                                         <td>
-                                            <a class="btn btn-sm btn-info" th:href="@{/paper/toEditPaper/}+${pap.paperId}">编辑</a>
-                                            <button th:attr="del_uri=@{/paper/deletePaper/}+${pap.paperId}" class="btn btn-sm btn-danger deleteBtn">删除</button>
-                                            <a class="btn btn btn-primary btn-round" th:href="@{/paper/toManagerQuestion/}+${pap.paperId}">管理试题</a>
+                                            <a class="btn btn-sm btn-info" th:href="@{/paper/toEditPaper/}+${pap.paperId}">edit</a>
+                                            <button th:attr="del_uri=@{/paper/deletePaper/}+${pap.paperId}" class="btn btn-sm btn-danger deleteBtn">delete</button>
+                                            <a class="btn btn btn-primary btn-round" th:href="@{/paper/toManagerQuestion/}+${pap.paperId}">manage Q</a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -77,12 +77,12 @@
         // $(this).attr("del_uri")
         //提交表单
         // $("#deleteClasseForm").attr("action",$(this).attr("del_uri")).submit();
-        if(confirm("确实要删除吗？")){
+        if(confirm("are you sure to delete？")){
             //提交表单
             $("#deleteClasseForm").attr("action",$(this).attr("del_uri")).submit();
-            layer.msg("删除成功", {time:2000, icon:6});
+            layer.msg("success", {time:2000, icon:6});
         }else {
-            layer.msg("删除取消", {time:2000, icon:5, shift:6});
+            layer.msg("cancel", {time:2000, icon:5, shift:6});
         }
         return false;
     });

@@ -2,7 +2,7 @@
 <html lang="en"	xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>在线考试系统后台试题管理页面</title>
+    <title>Paper management page</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
@@ -21,14 +21,14 @@
     <div class="main-panel">
         <div class="content">
             <div class="container-fluid">
-                <h4 class="page-title" th:text="${paperName}+'试卷——添加试题页面'"></h4>
+                <h4 class="page-title" th:text="${paperName}+'Add-Question'"></h4>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
                         <div class="row">
-                            <div class="col-md-2"><h2><a class="btn btn-warning" href="#" th:href="@{/question/toAddQuestion}">一键添加</a></h2> </div>
-                            <div class="col-md-2"><h2><a class="btn btn-info" href="#" th:href="@{/paper/toManagerQuestion/}+${paperId}">返回</a></h2> </div>
+                            <div class="col-md-2"><h2><a class="btn btn-warning" href="#" th:href="@{/question/toAddQuestion}">add all</a></h2> </div>
+                            <div class="col-md-2"><h2><a class="btn btn-info" href="#" th:href="@{/paper/toManagerQuestion/}+${paperId}">back</a></h2> </div>
                             <form class="col-md-8" th:action="@{/paper/toAddQuestion/}+${paperId}">
                                 <div class="row">
                                 <div class="col-md-2">
@@ -55,28 +55,28 @@
                                            <option th:each="quetype:${questionTypes}" th:if="${quetype.getQuestionType()}=='y'" th:text="多选题" th:value="${quetype.getQuestionType()}"></option>
                                            <option th:each="quetype:${questionTypes}" th:if="${quetype.getQuestionType()}=='z'" th:text="判断题" th:value="${quetype.getQuestionType()}"></option>-->
                                            <u  th:each="quetype:${questionTypes}" th:if="${quetype.getQuestionType()}=='k'">
-                                               <option th:text="所有" th:value="${quetype.getQuestionType()}" th:if="${quetype.getQuestionType()}==${questionTypesRes}" selected></option>
-                                               <option th:text="所有" th:value="${quetype.getQuestionType()}" th:if="${quetype.getQuestionType()}!=${questionTypesRes}"></option>
+                                               <option th:text="all" th:value="${quetype.getQuestionType()}" th:if="${quetype.getQuestionType()}==${questionTypesRes}" selected></option>
+                                               <option th:text="all" th:value="${quetype.getQuestionType()}" th:if="${quetype.getQuestionType()}!=${questionTypesRes}"></option>
                                            </u>
                                            <u  th:each="quetype:${questionTypes}" th:if="${quetype.getQuestionType()}=='x'">
-                                               <option th:text="单选题" th:value="${quetype.getQuestionType()}" th:if="${quetype.getQuestionType()}==${questionTypesRes}" selected></option>
-                                               <option th:text="单选题" th:value="${quetype.getQuestionType()}" th:if="${quetype.getQuestionType()}!=${questionTypesRes}"></option>
+                                               <option th:text="single" th:value="${quetype.getQuestionType()}" th:if="${quetype.getQuestionType()}==${questionTypesRes}" selected></option>
+                                               <option th:text="single" th:value="${quetype.getQuestionType()}" th:if="${quetype.getQuestionType()}!=${questionTypesRes}"></option>
                                            </u>
 
                                            <u  th:each="quetype:${questionTypes}" th:if="${quetype.getQuestionType()}=='y'">
-                                               <option th:text="多选题" th:value="${quetype.getQuestionType()}" th:if="${quetype.getQuestionType()}==${questionTypesRes}" selected></option>
-                                               <option th:text="多选题" th:value="${quetype.getQuestionType()}" th:if="${quetype.getQuestionType()}!=${questionTypesRes}"></option>
+                                               <option th:text="multiple" th:value="${quetype.getQuestionType()}" th:if="${quetype.getQuestionType()}==${questionTypesRes}" selected></option>
+                                               <option th:text="multiple" th:value="${quetype.getQuestionType()}" th:if="${quetype.getQuestionType()}!=${questionTypesRes}"></option>
                                            </u>
                                            <u  th:each="quetype:${questionTypes}" th:if="${quetype.getQuestionType()}=='z'">
-                                               <option th:text="判断题" th:value="${quetype.getQuestionType()}" th:if="${quetype.getQuestionType()}==${questionTypesRes}" selected></option>
-                                               <option th:text="判断题" th:value="${quetype.getQuestionType()}" th:if="${quetype.getQuestionType()}!=${questionTypesRes}"></option>
+                                               <option th:text="TorF" th:value="${quetype.getQuestionType()}" th:if="${quetype.getQuestionType()}==${questionTypesRes}" selected></option>
+                                               <option th:text="TorF" th:value="${quetype.getQuestionType()}" th:if="${quetype.getQuestionType()}!=${questionTypesRes}"></option>
                                            </u>
                                        </select>
                                    </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <button class="btn btn-primary btn-border btn-round" th:text="查看"></button>
+                                        <button class="btn btn-primary btn-border btn-round" th:text="view"></button>
                                     </div>
                                  </div>
                                 </div>
@@ -92,23 +92,23 @@
                                     <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">题型</th>
-                                        <th scope="col">试题知识</th>
-                                        <th scope="col">题目</th>
-                                        <th scope="col">选项A</th>
-                                        <th scope="col">选项B</th>
-                                        <th scope="col">选项C</th>
-                                        <th scope="col">选项D</th>
-                                        <th scope="col">正确选项</th>
-                                        <th scope="col">操作</th>
+                                        <th scope="col">type</th>
+                                        <th scope="col">knowledge</th>
+                                        <th scope="col">question</th>
+                                        <th scope="col">A</th>
+                                        <th scope="col">B</th>
+                                        <th scope="col">C</th>
+                                        <th scope="col">D</th>
+                                        <th scope="col">correct</th>
+                                        <th scope="col">change</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr th:each="que,queStat:${pageInfo.list}">
                                         <td th:text="${queStat.count}"></td>
-                                        <td th:if="${que.questionType}=='x'" th:text="单择题"></td>
-                                        <td th:if="${que.questionType}=='y'" th:text="多选题"></td>
-                                        <td th:if="${que.questionType}=='z'" th:text="判断题"></td>
+                                        <td th:if="${que.questionType}=='x'" th:text="single"></td>
+                                        <td th:if="${que.questionType}=='y'" th:text="multiple"></td>
+                                        <td th:if="${que.questionType}=='z'" th:text="TorF"></td>
                                         <td th:text="${que.questionCourse}"></td>
                                         <td th:text="${#strings.abbreviate(que.questionName,10)}"></td>
                                         <td th:text="${#strings.abbreviate(que.questionOpa,10)}"></td>
@@ -186,12 +186,12 @@
         // $(this).attr("del_uri")
         //提交表单
         // $("#deleteClasseForm").attr("action",$(this).attr("del_uri")).submit();
-        if(confirm("确实要删除吗？")){
+        if(confirm("are you sure to delete？")){
             //提交表单
             $("#deleteClasseForm").attr("action",$(this).attr("del_uri")).submit();
-            layer.msg("删除成功", {time:2000, icon:6});
+            layer.msg("success", {time:2000, icon:6});
         }else {
-            layer.msg("删除取消", {time:2000, icon:5, shift:6});
+            layer.msg("cancel", {time:2000, icon:5, shift:6});
         }
         return false;
     });

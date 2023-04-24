@@ -2,7 +2,7 @@
 <html lang="en"	xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>在线考试系统后台试题管理页面</title>
+    <title>Paper management page</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
@@ -21,15 +21,15 @@
     <div class="main-panel">
         <div class="content">
             <div class="container-fluid">
-                <h4 class="page-title" th:text="${paperName}+'试卷——试题管理页面'"></h4>
+                <h4 class="page-title" th:text="${paperName}+'Add-Question'"></h4>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
                         <div class="row">
-                            <div class="col-md-2"><h2><a class="btn btn-primary" href="#" th:href="@{/paper/toAddQuestion/}+${papid}">人工组题</a></h2> </div>
-                            <div class="col-md-2"><h2><a class="btn btn-primary" href="#" th:href="@{/paper/toRandomQuestion/}+${papid}">随机组题</a></h2> </div>
-                            <div class="col-md-2"><h2><a class="btn btn-info" href="#" th:href="@{/paper/getAllPaper}">返回</a></h2> </div>
+                            <div class="col-md-2"><h2><a class="btn btn-primary" href="#" th:href="@{/paper/toAddQuestion/}+${papid}">manual</a></h2> </div>
+                            <div class="col-md-2"><h2><a class="btn btn-primary" href="#" th:href="@{/paper/toRandomQuestion/}+${papid}">random</a></h2> </div>
+                            <div class="col-md-2"><h2><a class="btn btn-info" href="#" th:href="@{/paper/getAllPaper}">back</a></h2> </div>
                         </div>
                             </div>
                         </div>
@@ -39,13 +39,13 @@
                                 <table class="table table-head-bg-success">
                                     <thead>
                                     <tr>
-                                        <th scope="col">批量删除</th>
+                                        <th scope="col">del in group</th>
                                         <th scope="col">#</th>
-                                        <th scope="col">题型</th>
-                                        <th scope="col">试题知识</th>
-                                        <th scope="col">题目</th>
-                                        <th scope="col">正确选项</th>
-                                        <th scope="col">操作</th>
+                                        <th scope="col">type</th>
+                                        <th scope="col">knowledge</th>
+                                        <th scope="col">question</th>
+                                        <th scope="col">correct</th>
+                                        <th scope="col">change</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -58,17 +58,17 @@
                                             </label>
                                         </td>
                                         <td th:text="${quepapStat.count}"></td>
-                                        <td th:if="${quepap.getQuestion().questionType}=='x'" th:text="单择题"></td>
-                                        <td th:if="${quepap.getQuestion().questionType}=='y'" th:text="多选题"></td>
-                                        <td th:if="${quepap.getQuestion().questionType}=='z'" th:text="判断题"></td>
+                                        <td th:if="${quepap.getQuestion().questionType}=='x'" th:text="single"></td>
+                                        <td th:if="${quepap.getQuestion().questionType}=='y'" th:text="multiple"></td>
+                                        <td th:if="${quepap.getQuestion().questionType}=='z'" th:text="TorF"></td>
                                         <td th:text="${quepap.getQuestion().questionCourse}"></td>
                                         <td th:text="${quepap.getQuestion().questionName}"></td>
                                         <td th:text="${quepap.getQuestion().questionOpright}"></td>
                                         <td>
-                                            <a class="btn btn-sm btn-warning" th:href="'/paper/detachQuestion?paperId='+${papid}+'&qpId='+${quepap.id}">移除</a>
+                                            <a class="btn btn-sm btn-warning" th:href="'/paper/detachQuestion?paperId='+${papid}+'&qpId='+${quepap.id}">remove</a>
                                         </td>
                                     </tr>
-                                                <button class="btn btn-danger" th:text="一键删除"></button>
+                                                <button class="btn btn-danger" th:text="deleteAll"></button>
                                     </form>
                                     </tbody>
                                 </table>
@@ -97,12 +97,12 @@
         // $(this).attr("del_uri")
         //提交表单
         // $("#deleteClasseForm").attr("action",$(this).attr("del_uri")).submit();
-        if(confirm("确实要删除吗？")){
+        if(confirm("are you sure to delete？")){
             //提交表单
             $("#deleteClasseForm").attr("action",$(this).attr("del_uri")).submit();
-            layer.msg("删除成功", {time:2000, icon:6});
+            layer.msg("success", {time:2000, icon:6});
         }else {
-            layer.msg("删除取消", {time:2000, icon:5, shift:6});
+            layer.msg("cancel", {time:2000, icon:5, shift:6});
         }
         return false;
     });

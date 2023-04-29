@@ -2,7 +2,7 @@
 <html lang="en"	xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>在线考试系统后台学生页面</title>
+    <title>System student page</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
@@ -21,40 +21,40 @@
     <div class="main-panel">
         <div class="content">
             <div class="container-fluid">
-                <h4 class="page-title">学生管理页面</h4>
+                <h4 class="page-title">Student management page</h4>
                 <div class="col-md-6">
                     <form th:action="@{/student/editStudent}" method="put">
                         <input type="hidden" name="studentId" th:value="${student.studentId}">
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="name">姓名</label>
+                                    <label for="name">name</label>
                                     <input type="text" class="form-control" id="name" name="studentName" th:value="${student.studentName}" placeholder="学生姓名">
                                 </div>
                                 <div class="form-group">
-                                    <label for="name">账号</label>
+                                    <label for="name">account</label>
                                     <input type="text" class="form-control" id="account" name="studentAccount" th:value="${student.studentAccount}" placeholder="学生账号" readonly="readonly">
                                     <small id="accounthelp" class="form-text text-muted"></small>
                                 </div>
                                 <div class="form-check">
-                                    <label>性别</label><br>
+                                    <label>gender</label><br>
                                     <select class="form-control" name="studentGender">
-                                        <option th:selected="${student.studentGender==1}" th:text="男" th:value="1"></option>
-                                        <option th:selected="${student.studentGender==0}" th:text="女" th:value="0"></option>
+                                        <option th:selected="${student.studentGender==1}" th:text="male" th:value="1"></option>
+                                        <option th:selected="${student.studentGender==0}" th:text="female" th:value="0"></option>
                                     </select>
                                     </label>
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">邮箱</label>
+                                    <label for="email">email</label>
                                     <input type="email" class="form-control" id="email" name="studentEmail" th:value="${student.studentEmail}" placeholder="学生邮箱">
                                 </div>
                                 <div class="form-group">
-                                    <label for="password">密码</label>
+                                    <label for="password">password</label>
                                     <input type="password" class="form-control" id="password" name="studentPwd" th:value="${student.studentPwd}" placeholder="学生密码" readonly="readonly">
                                 </div>
                                 <div class="form-group">
                                     <!--由数据库中查询出来-->
-                                    <label>班级</label>
+                                    <label>class</label>
                                     <select class="form-control" name="classeId">
                                         <option th:each="cla:${classes}" th:selected="${cla.classeId==student.classeId}" th:text="${cla.classeName}" th:value="${cla.classeId}"></option>
                                     </select>
